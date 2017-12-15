@@ -1,16 +1,9 @@
 package testcases;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Search_Equity_Get_Details {
@@ -46,7 +39,7 @@ public class Search_Equity_Get_Details {
 		WebElement Script_Click = driver.findElement(By.xpath("//span[@id='ajax_response']//li[@class='selected']/a"));
 		Script_Click.click();
 		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
-		OutputStream output = null;
+//		OutputStream output = null;
 		
 //		try {
 //			output = new FileOutputStream("OutputFile.properties");
