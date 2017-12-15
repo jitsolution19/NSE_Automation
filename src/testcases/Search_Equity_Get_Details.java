@@ -11,14 +11,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Search_Equity_Get_Details {
 
 	public static void main(String[] args) {
 		
-		Properties prop =new Properties();
-		InputStream input = null;
-		String filename ="database.properties";
+//		Properties prop =new Properties();
+//		InputStream input = null;
+//		String filename ="database.properties";
 //		input = obj.getClass().getClassLoader().getResourceAsStream(filename);
 //		
 //		if (input == null)
@@ -27,18 +28,17 @@ public class Search_Equity_Get_Details {
 //			return;
 //		}
 		
-		try {
-			input = new FileInputStream(filename);
-			prop.load(input);
-			String Script = prop.getProperty("Script");
-			System.out.println("Data :: "+Script);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		System.setProperty("webdriver.chrome.driver","B:\\Automation\\software\\chromedriver_win32\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
+//		try {
+//			input = new FileInputStream(filename);
+//			prop.load(input);
+//			String Script = prop.getProperty("Script");
+//			System.out.println("Data :: "+Script);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+		System.setProperty("webdriver.gecko.driver","B:\\Automation\\software\\geckodriver-v0.19.1-win64\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
 		driver.navigate().to("https://www.nseindia.com/");
 		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
 		driver.findElement(By.id("keyword")).sendKeys("HDFC");
@@ -48,14 +48,14 @@ public class Search_Equity_Get_Details {
 		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
 		OutputStream output = null;
 		
-		try {
-			output = new FileOutputStream("OutputFile.properties");
-			String VWAP_Value=driver.findElement(By.xpath("//span[@id='vwap']")).getText().trim();
-			prop.setProperty("VWAP",VWAP_Value);						
-			prop.store(output, null);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			output = new FileOutputStream("OutputFile.properties");
+//			String VWAP_Value=driver.findElement(By.xpath("//span[@id='vwap']")).getText().trim();
+//			prop.setProperty("VWAP",VWAP_Value);						
+//			prop.store(output, null);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		System.out.println("Company_Name :: "+driver.findElement(By.id("companyName")).getText().trim());
 		System.out.println("Last_Updated_Div :: "+driver.findElement(By.id("LastUpdatedDiv")).getText().trim());
 		System.out.println("Last_Traded_Price :: "+driver.findElement(By.id("lastPrice")).getText().trim());
