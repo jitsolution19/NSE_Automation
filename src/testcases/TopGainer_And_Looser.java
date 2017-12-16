@@ -1,5 +1,6 @@
 package testcases;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -22,12 +23,26 @@ public class TopGainer_And_Looser {
 		WebElement menu =driver.findElement(By.linkText("Live Market"));
 		driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 		Actions builder = new Actions(driver);		
-		Action abc = builder.moveToElement(menu).build();
-		abc.perform();
+		builder.moveToElement(menu).build().perform();		
 		WebDriverWait wait = new WebDriverWait(driver, 5); 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Top Ten Gainers / Losers")));
 		driver.findElement(By.linkText("Top Ten Gainers / Losers")).click();
-		
+		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);		
+		driver.findElement(By.linkText("Gainers")).click();
+		System.out.println(driver.findElement(By.id("dataTime")));
+		driver.findElement(By.linkText("Nifty 50")).click();
+		List<WebElement> TabelRow= driver.findElements(By.xpath("//table[@id='topGainers']/tbody/tr"));
+		System.out.println(TabelRow.size());
+		System.out.println("Symbol|LTP|% Change|Traded Qty|Value(in Lakhs)|Open|High|Low|Prev. Close|Latest Ex Date|Corporate Action|");
+		for(int i =1;i<TabelRow.size();i++)
+		{
+			List<WebElement> TabelColumn= driver.findElements(By.xpath("//table[@id='topGainers']/tbody/tr["+i+"]/td"));
+			for(int j =0;j<TabelColumn.size();j++)
+			{
+				System.out.print(TabelColumn.get(j).getText()+"|");
+			}
+			System.out.println();
+		}
 	}
 
 }
