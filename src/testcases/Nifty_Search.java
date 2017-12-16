@@ -34,6 +34,7 @@ public class Nifty_Search {
 		WebDriverWait wait = new WebDriverWait(driver, 5); 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("NSE Bond Futures")));
 		driver.findElement(By.linkText("NSE Bond Futures")).click();
+		Top Ten Gainers / Losers 
 //		
 //		driver.findElement(By.linkText("NSE Bond Futures")).click();
 		
