@@ -29,7 +29,7 @@ public class TopGainer_And_Looser {
 		driver.findElement(By.linkText("Top Ten Gainers / Losers")).click();
 		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);		
 		driver.findElement(By.linkText("Gainers")).click();
-		System.out.println(driver.findElement(By.id("dataTime")));
+		System.out.println(driver.findElement(By.id("dataTime")).getText());
 		driver.findElement(By.linkText("Nifty 50")).click();
 		List<WebElement> TabelRow= driver.findElements(By.xpath("//table[@id='topGainers']/tbody/tr"));
 		System.out.println(TabelRow.size());
