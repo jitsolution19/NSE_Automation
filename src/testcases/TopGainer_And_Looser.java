@@ -59,5 +59,4 @@ public class TopGainer_And_Looser {
 		}
 		return (0);
 	}
-	
 }
