@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TopGainer_And_Looser {
-
+	WebDriver driver;
 	public static void main(String[] args) {
 
 		System.setProperty("webdriver.gecko.driver","B:\\Automation\\software\\geckodriver-v0.19.1-win64\\geckodriver.exe");
@@ -26,22 +26,38 @@ public class TopGainer_And_Looser {
 		WebDriverWait wait = new WebDriverWait(driver, 5); 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Top Ten Gainers / Losers")));
 		driver.findElement(By.linkText("Top Ten Gainers / Losers")).click();
-		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);		
-		driver.findElement(By.linkText("Gainers")).click();
+		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
+		int retu= Stockinfo(driver,"Gainers","Nifty 50");
+		System.out.println(retu);
+		
+	}
+
+	public static int Stockinfo(WebDriver driver,String Gainers_Looser,String view_active )
+	{
+		String TableMathod;
+		if(Gainers_Looser.matches("Gainers"))
+		{
+			TableMathod = "topGainers";	
+		}else
+		{
+			TableMathod = "topLosers";
+		}
+		driver.findElement(By.linkText(Gainers_Looser)).click();
 		System.out.println(driver.findElement(By.id("dataTime")).getText());
-		driver.findElement(By.linkText("Nifty 50")).click();
-		List<WebElement> TabelRow= driver.findElements(By.xpath("//table[@id='topGainers']/tbody/tr"));
+		driver.findElement(By.linkText(view_active)).click();
+		List<WebElement> TabelRow= driver.findElements(By.xpath("//table[@id='"+TableMathod+"']/tbody/tr"));
 		System.out.println(TabelRow.size());
-		System.out.println("Symbol|LTP|% Change|Traded Qty|Value(in Lakhs)|Open|High|Low|Prev. Close|Latest Ex Date|Corporate Action|");
+		System.out.print("Symbol|LTP|% Change|Traded Qty|Value(in Lakhs)|Open|High|Low|Prev. Close|Latest Ex Date|Corporate Action|");
 		for(int i =1;i<TabelRow.size();i++)
 		{
-			List<WebElement> TabelColumn= driver.findElements(By.xpath("//table[@id='topGainers']/tbody/tr["+i+"]/td"));
+			List<WebElement> TabelColumn= driver.findElements(By.xpath("//table[@id='"+TableMathod+"']/tbody/tr["+i+"]/td"));
 			for(int j =0;j<TabelColumn.size();j++)
 			{
 				System.out.print(TabelColumn.get(j).getText()+"|");
 			}
 			System.out.println();
 		}
+		return (0);
 	}
-
+	
 }
