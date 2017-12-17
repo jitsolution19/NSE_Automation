@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EquityStockWatch {
@@ -25,6 +26,7 @@ public class EquityStockWatch {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Equity Stock")));
 		driver.findElement(By.linkText("Equity Stock")).click();
 		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
+		Select bankNiftySelect =new Select(driver.findElement(By.id("bankNiftySelect")));
 
 	}
 
