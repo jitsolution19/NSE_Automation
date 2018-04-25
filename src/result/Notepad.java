@@ -48,7 +48,6 @@ public class Notepad {
 			while ((data = br.readLine()) != null)
 			System.out.println(data);			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return data;	 
