@@ -14,7 +14,7 @@ public class Notepad {
 	public static void main(String[] args){
 	String filePath= "C:\\Users\\mamta\\eclipse-workspace\\NSE_INDIA\\Result\\TestResult";
 	String value=readtextfile(filePath);
-	
+	System.out.println(value);
 //		
 //	BufferedWriter writer = null;
 //    try {
