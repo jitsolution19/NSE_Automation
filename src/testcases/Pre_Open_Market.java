@@ -27,8 +27,6 @@ public class Pre_Open_Market extends utilities {
 	@FindBy(xpath ="//p[@id='status']/span")
 	static WebElement status;
 	
-	
-	
 	public static void main(String[] args) {
 	
 		WebDriver driver = Firefoxbrowser("https://www.nseindia.com/");		
