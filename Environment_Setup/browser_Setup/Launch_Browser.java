@@ -5,6 +5,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Launch_Browser {
@@ -29,7 +30,7 @@ public class Launch_Browser {
 	      
 	      	if(Browser.matches("chrome"))
 	      	{
-	      		driver = Chrome_Browser();
+	      		driver = Chrome_Browser(BrowserPath,Url);
 	      		
 	      	}else if(Browser.matches("firefox"))
 	      	{
@@ -51,11 +52,11 @@ public class Launch_Browser {
 		return driver;	
 	}
 	
-	public static WebDriver Chrome_Browser()
+	public static WebDriver Chrome_Browser(String BrowserPath,String Url)
 	{
-		System.setProperty("webdriver.gecko.driver","B:\\Automation\\software\\geckodriver-v0.19.1-win64\\geckodriver.exe");
-		WebDriver driver = new FirefoxDriver();
-		driver.navigate().to("https://www.nseindia.com/");
+		System.setProperty("webdriver.chrome.driver",BrowserPath);
+		WebDriver driver = new ChromeDriver();
+		driver.navigate().to(Url);
 		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
 		return driver;	
 	}

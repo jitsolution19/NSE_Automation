@@ -13,19 +13,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import browser_Setup.Launch_Browser;
+import corporateHome.CorporateHome;
 
 public class Corporates_ListingDirectoryEquity {
 	@FindBy(id="main_corporate")
 	static WebElement Corporates;	
 	
 	@FindBy(linkText="Listed Securities")
-	static WebElement ListedSecurities;
-	
-	@FindBy(id="combo_company")
-	static WebElement SearchCompany;
-	
-	@FindBy(id="ext-gen103")
-	static WebElement SearchCompanyDropdown;
+	static WebElement ListedSecurities;	
 
 	@Test	
 	public void Corporates_ListingDirectoryEquitymethod() {
@@ -37,9 +32,8 @@ public class Corporates_ListingDirectoryEquity {
 		builder.moveToElement(Corporates).build().perform();		
 		WebDriverWait wait = new WebDriverWait(driver, 5); 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Listed Securities")));		
-		ListedSecurities.click();		
-		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
-		SearchCompany.sendKeys("LEMONTREE");
-		SearchCompanyDropdown.click();
-		}
+		ListedSecurities.click();
+		CorporateHome ObjCorporateHome = new CorporateHome();
+		ObjCorporateHome.ListedSecurities_Search(driver);
+	}
 }
