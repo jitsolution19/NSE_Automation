@@ -2,6 +2,7 @@ package corporateHome;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -29,7 +30,7 @@ public class CorporateHome {
 	@FindBy(id="ext-gen20")
 	static WebElement ResetButton;
 	
-	
+		
 	public void ListedSecurities_Search(WebDriver driver)
 	{
 			
@@ -73,11 +74,26 @@ public class CorporateHome {
 		try
 		{
 			driverNew.findElement(By.xpath("//img[@id='ext-gen92']")).click();
+			dynamicwait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='x-combo-list-inner']//span")));	
+			List<WebElement> yearsselection=driver.findElements(By.xpath("//*[@class='x-combo-list-inner']//span"));
+			yearsselection.get(3).click();
+			
+			List<WebElement> TableCoulmnName = driverNew.findElements(By.xpath("//div[@id='ext-gen36']//thead/tr/td"));
+			int counter =0;
+					
+			do 
+			{
+			System.out.println(TableCoulmnName.get(counter).getText());	
+			counter++;
+			}while(counter<TableCoulmnName.size());
+					
+						
 			
 		}catch(Exception e)
 		{
 			System.out.println("Issue with Selection ::"+e);
 		}
+		
 		
 	}
 
