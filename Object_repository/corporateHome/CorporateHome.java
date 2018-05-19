@@ -1,6 +1,8 @@
 package corporateHome;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -30,25 +32,27 @@ public class CorporateHome {
 	
 	public void ListedSecurities_Search(WebDriver driver)
 	{
-		CorporateHome page = PageFactory.initElements(driver, CorporateHome.class);
-		
-		String windowHandle = driver.getWindowHandle();
-
+			
+		String Mainwindow = driver.getWindowHandle();
+		WebDriver driverNew = null;
 		//Get the list of window handles
-		ArrayList tabs = new ArrayList (driver.getWindowHandles());
-		System.out.println(tabs.size());
+		Iterator<String> Windowcounter= driver.getWindowHandles().iterator();
+		while(Windowcounter.hasNext())
+		{
+			String Childwindow = Windowcounter.next();
+			if(!Mainwindow.equalsIgnoreCase(Childwindow))
+			{
+				driverNew = driver.switchTo().window(Childwindow);
+				break;
+			}
+		}
 		
-		String Windowvalue= tabs.get(1).toString();
-		//Use the list of window handles to switch between windows
-		WebDriver driverNew = driver.switchTo().window(Windowvalue);
-
-		//Switch back to original window
-//		driver.switchTo().window(mainWindowHandle);
+		CorporateHome page = PageFactory.initElements(driverNew, CorporateHome.class);
+		
 		try
 		{
-			WebDriverWait PageLoadWait = new WebDriverWait(driverNew,60);
-			PageLoadWait.until(ExpectedConditions.visibilityOf(frameCount));			
-//			driverNew.manage().timeouts().pageLoadTimeout(40,TimeUnit.SECONDS);
+			WebDriverWait PageLoadWait = new WebDriverWait(driverNew,1200);
+			PageLoadWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameCount));			
 		}
 		catch(Exception e)
 		{
@@ -57,34 +61,24 @@ public class CorporateHome {
 		
 		System.out.println(driverNew.getTitle());
 				
-		try
-		{
-//			int size = driverNew.findElements(By.xpath("//iframe[@src='/corporates/listDir/listDirectory.html\']")).size();
-			driverNew.switchTo().frame(1);
-			driverNew.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-		}
-		catch(Exception eth)
-		{
-			System.out.println(eth);
-		}
-
 		String valuecheck = driverNew.findElement(By.xpath("//label[@id='ext-gen80']")).getText();
 		System.out.println(valuecheck);
 		SearchCompany.clear();
-		SearchCompany.sendKeys("LEMONTREE");
+		String Input="LEMONTREE";
+		SearchCompany.sendKeys(Input);
 		WebDriverWait dynamicwait = new WebDriverWait(driverNew,30);
-		try 
+		dynamicwait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='x-combo-list-inner']//a[text()='"+Input+"']")));
+		driverNew.findElement(By.xpath("//*[@class='x-combo-list-inner']//a[text()='"+Input+"']")).click();
+//		SearchCompanyDropdown.click();
+		try
 		{
-		dynamicwait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='ext-gen96']")));
-		
+			driverNew.findElement(By.xpath("//img[@id='ext-gen92']")).click();
+			
 		}catch(Exception e)
 		{
-			System.out.println(e);
+			System.out.println("Issue with Selection ::"+e);
 		}
 		
-		SearchCompanyDropdown.click();
-
-
 	}
 
 }
