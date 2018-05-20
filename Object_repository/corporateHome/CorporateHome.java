@@ -21,7 +21,7 @@ public class CorporateHome {
 	@FindBy(xpath="//div[@id='ext-gen96']")
 	static WebElement SearchCompanyDropdown;
 	
-	@FindBy(xpath="//iframe[@src='/corporates/listDir/listDirectory.html\']")
+	@FindBy(xpath="//iframe[@src='/corporates/listDir/listDirectory.html']")
 	static WebElement frameCount;
 	
 	@FindBy(id="ext-gen18")
@@ -52,7 +52,7 @@ public class CorporateHome {
 		
 		try
 		{
-			WebDriverWait PageLoadWait = new WebDriverWait(driverNew,1200);
+			WebDriverWait PageLoadWait = new WebDriverWait(driverNew,1500);
 			PageLoadWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameCount));			
 		}
 		catch(Exception e)
@@ -60,8 +60,7 @@ public class CorporateHome {
 		System.out.println("Issue with Loading Page :: "+e);	
 		}
 		
-		System.out.println(driverNew.getTitle());
-				
+		System.out.println(driverNew.getTitle());				
 		String valuecheck = driverNew.findElement(By.xpath("//label[@id='ext-gen80']")).getText();
 		System.out.println(valuecheck);
 		SearchCompany.clear();
@@ -78,17 +77,24 @@ public class CorporateHome {
 			List<WebElement> yearsselection=driver.findElements(By.xpath("//*[@class='x-combo-list-inner']//span"));
 			yearsselection.get(3).click();
 			
+			SearchButton.click();
+			
 			List<WebElement> TableCoulmnName = driverNew.findElements(By.xpath("//div[@id='ext-gen36']//thead/tr/td"));
 			int counter =0;
-					
 			do 
 			{
 			System.out.println(TableCoulmnName.get(counter).getText());	
 			counter++;
 			}while(counter<TableCoulmnName.size());
 					
-						
-			
+			List<WebElement> Scriptvalue = driverNew.findElements(By.xpath("//div[@class='x-grid3-body' and @id='ext-gen32']//table//tr/td/div"));
+			counter =0;
+			do 
+			{
+			System.out.println(Scriptvalue.get(counter).getText());	
+			counter++;
+			}while(counter<Scriptvalue.size());
+									
 		}catch(Exception e)
 		{
 			System.out.println("Issue with Selection ::"+e);
