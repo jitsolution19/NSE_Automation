@@ -95,11 +95,21 @@ public class CorporateHome {
 			counter++;
 			}while(counter<Scriptvalue.size());
 									
+			
 		}catch(Exception e)
 		{
 			System.out.println("Issue with Selection ::"+e);
 		}
 		
+		try
+		{
+		
+			driverNew.findElement(By.xpath("//div[@class='x-grid3-body' and @id='ext-gen32']//table//tr/td[1]/div")).click();
+						
+		}catch(Exception e)
+		{
+			System.out.println("Issue in Clicking the Script in Table :: "+e);
+		}
 		
 	}
 
