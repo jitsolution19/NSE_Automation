@@ -27,6 +27,10 @@ public class CorporateHome {
 	@FindBy(id="ext-gen20")
 	static WebElement ResetButton;
 	
+	public CorporateHome(WebDriver driver)
+	{
+		PageFactory.initElements(driver, this);
+	}
 		
 	public void ListedSecurities_Search(WebDriver driver)
 	{

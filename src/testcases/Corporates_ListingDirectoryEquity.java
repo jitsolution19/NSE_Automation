@@ -21,19 +21,20 @@ public class Corporates_ListingDirectoryEquity {
 	
 	@FindBy(linkText="Listed Securities")
 	static WebElement ListedSecurities;	
-
+	
 	@Test	
 	public void Corporates_ListingDirectoryEquitymethod() {
 		Launch_Browser Browse = new Launch_Browser();
 		WebDriver driver= Browse.Launch_Browser();
-		Corporates_ListingDirectoryEquity page = PageFactory.initElements(driver, Corporates_ListingDirectoryEquity.class);
+		PageFactory.initElements(driver, this);
 		driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 		Actions builder = new Actions(driver);		
 		builder.moveToElement(Corporates).build().perform();		
 		WebDriverWait wait = new WebDriverWait(driver, 5); 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Listed Securities")));		
 		ListedSecurities.click();
-		CorporateHome ObjCorporateHome = new CorporateHome();
+		CorporateHome ObjCorporateHome = new CorporateHome(driver);
 		ObjCorporateHome.ListedSecurities_Search(driver);
+		driver.quit();
 	}
 }
