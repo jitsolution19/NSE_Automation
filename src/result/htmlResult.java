@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.junit.Test;
@@ -39,36 +38,7 @@ public class htmlResult {
 			
 			junitWriter.write("<table style=\"width:100%\">");
 			junitWriter.write("<th>S.no#</th><th>Test Case Name</th><th>Expected Result</th><th>Actual Result</th><th>Status</th><th>Start Time</th><th>End Time</th>");
-			
-			
-//			junitWriter.write("<tr>");
-//			junitWriter.write("<td align=\"center\">1</td>");
-//			junitWriter.write("<td>Verify User Name</td>");
-//			junitWriter.write("<td>jitsolution19@gmail.com</td>");
-//			junitWriter.write("<td>jitsolution19@gmail.com</td>");
-//			junitWriter.write("<td align=\"center\"><font color=\"Green\">Pass</font></td>");
-//			SimpleDateFormat Starttime = new SimpleDateFormat("HH:mm:ss");
-//
-//		    Date now = new Date();
-//
-//		    String strTime = Starttime.format(now);
-//
-////		    System.out.println("Time: " + strTime);
-//			junitWriter.write("<td align='center'>"+strTime+"</td>");
-//			try {
-//				Thread.sleep(5000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			SimpleDateFormat EndTime = new SimpleDateFormat("HH:mm:ss");
-//			Date now1 = new Date();
-//
-//		    String EndTim = EndTime.format(now1);
-//
-//			junitWriter.write("<td align=\"center\">"+EndTim+"</td>");
-//			junitWriter.write("</tr>");
-//			
+				
 			for(int i =1;i<=10;i++)
 			{
 				result(i);
@@ -107,8 +77,6 @@ public class htmlResult {
 		    Date now = new Date();
 
 		    String strTime = Starttime.format(now);
-
-//		    System.out.println("Time: " + strTime);
 			junitWriter.write("<td align='center'>"+strTime+"</td>");
 			try {
 				Thread.sleep(5000);
