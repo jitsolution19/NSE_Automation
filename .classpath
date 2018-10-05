@@ -8,6 +8,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="Object_repository"/>
 	<classpathentry kind="src" path="Environment_Setup"/>
+	<classpathentry kind="src" path="DatabaseConnector"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="E:/Selenium_Project/SeleniumJar/selenium-server-standalone-3.14.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
