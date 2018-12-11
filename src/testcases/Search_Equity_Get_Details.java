@@ -30,7 +30,7 @@ public class Search_Equity_Get_Details {
 //			e.printStackTrace();
 //		}
 //		
-		System.setProperty("webdriver.gecko.driver","B:\\Automation\\software\\geckodriver-v0.19.1-win64\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver","E:\\Selenium_Project\\browserdriver\\geckodriver-v0.22.0-win64\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.navigate().to("https://www.nseindia.com/");
 		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
@@ -71,6 +71,7 @@ public class Search_Equity_Get_Details {
 		System.out.println("52 week low Date :: "+driver.findElement(By.xpath("//span[@id='mock_cm_adj_low_dt']")).getText().trim());
 		System.out.println("Lower Price Band :: "+driver.findElement(By.xpath("//span[@id='lowpriceBand']")).getText().trim());
 		System.out.println("Upper Price Band :: "+driver.findElement(By.xpath("//span[@id='upperpriceBand']")).getText().trim());
+		driver.quit();
 	}
 
 }

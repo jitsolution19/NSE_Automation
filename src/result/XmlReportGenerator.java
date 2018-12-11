@@ -29,37 +29,12 @@ public class XmlReportGenerator {
 	static Element scenario;
 	static Element TestCaseName;
 
-	public static void main(String[] args) {
-
-		File_Location = "C:\\Users\\LENOVO\\git\\NSE_Automation\\Result\\XmlReport.xml";
+	public static void reportinitialize(String File_Location,String ProjectName,String TesterName)
+	{
 		file = new File(File_Location);
-		try {
-			reportobj = reportSetup("Report Generation", "Jitendra");
-			ScenarioName("Scenario 1");
-			TestCaseName("Test Case 1");
-			TestStep("1","Verify Login","Login Success","Login Success","Pass");
-			TestStep("2","Verify Product Added","Product Added Success","Product Added Success","Pass");
-			TestStep("3","Verify Product dispaly in Cart","Product dispaly in Cart Success","Product dispaly in Cart Success","Pass");
-			TestCaseName("Test Case 2");
-			TestStep("1","Verify Login","Login Success","Login Success","Pass");
-			TestStep("2","Verify Product Added","Product Added Success","Product Added Success","Pass");
-			TestStep("3","Verify Product dispaly in Cart","Product dispaly in Cart Success","Product dispaly in Cart Success","Pass");
-			ScenarioName("Scenario 2");
-			TestCaseName("Test Case 1");
-			TestStep("1","Verify Login","Login Success","Login Success","Pass");
-			TestStep("2","Verify Product Added","Product Added Success","Product Added Success","Pass");
-			TestStep("3","Verify Product dispaly in Cart","Product dispaly in Cart Success","Product dispaly in Cart Success","Pass");
-			ScenarioName("Scenario 3");
-			TestCaseName("Test Case 1");
-			TestStep("1","Verify Login","Login Success","Login Success","Pass");
-			TestStep("2","Verify Product Added","Product Added Success","Product Added Success","Pass");
-			TestStep("3","Verify Product dispaly in Cart","Product dispaly in Cart Success","Product dispaly in Cart Success","Pass");
-			reportClosure();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+		reportobj= reportSetup(ProjectName,TesterName);
 	}
-
+	
 	public static Element reportSetup(String ProjectName, String TesterName) {
 		try {
 			docFactory = DocumentBuilderFactory.newInstance();
@@ -92,20 +67,20 @@ public class XmlReportGenerator {
 		return Report;
 	}
 
-	public static void ScenarioName(String ScenarioName) {
+	public void ScenarioName(String ScenarioName) {
 		scenario = doc.createElement("ScenarioName");
 		scenario.appendChild(doc.createTextNode(ScenarioName));
 		reportobj.appendChild(scenario);
 	}
 
-	public static void TestCaseName(String TestName) {
+	public void TestCaseName(String TestName) {
 		TestCaseName = doc.createElement("TestCaseName");
 //		TestCaseName.setAttribute("Number", "1");
 		TestCaseName.appendChild(doc.createTextNode(TestName));
 		scenario.appendChild(TestCaseName);
 	}
 
-	public static void TestStep(String sno,String Condition,String Expected,String Actual,String status) {
+	public void TestStep(String sno, String Condition, String Expected, String Actual, String status) {
 		Element TestStep = doc.createElement("Teststep");
 		TestStep.appendChild(doc.createTextNode(sno));
 		TestCaseName.appendChild(TestStep);
@@ -133,17 +108,27 @@ public class XmlReportGenerator {
 		StartTime.appendChild(doc.createTextNode(strTime));
 		TestCaseName.appendChild(StartTime);
 	}
+	
+	public void Testdata(String data)
+	{
+		Element TestStep = doc.createElement("Test_Data");
+		TestStep.appendChild(doc.createTextNode(data));
+		TestCaseName.appendChild(TestStep);
+	}
 
 	public static void reportClosure() {
+		DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+		Date date = new Date();
 		try {
+			Element DaterootElement = doc.createElement("ProjectEndDate");
+			DaterootElement.appendChild(doc.createTextNode(dateFormat.format(date)));
+			Report.appendChild(DaterootElement);
 			transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
 			StreamResult result = new StreamResult(file);
 			transformer.transform(source, result);
 			System.out.println("File saved!");
-//		StreamResult consoleResult = new StreamResult(System.out);
-//		transformer.transform(source, consoleResult);
 		} catch (Exception e) {
 			System.out.println(e);
 		}

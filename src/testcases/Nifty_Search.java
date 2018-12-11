@@ -16,7 +16,7 @@ public class Nifty_Search {
 
 	public static void main(String[] args) throws Exception {
 
-		System.setProperty("webdriver.gecko.driver","B:\\Automation\\software\\geckodriver-v0.19.1-win64\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver","E:\\Selenium_Project\\browserdriver\\geckodriver-v0.22.0-win64\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.navigate().to("https://www.nseindia.com/");
 		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
