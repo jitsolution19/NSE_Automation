@@ -7,7 +7,7 @@ import java.io.FileWriter;
 
 import org.junit.Test;
 
-public class ReadFromTxtFile {
+public class TextFileOperation {
 
 	String FilePath="E:\\Selenium_Project\\database\\testingFile.txt";
 	
