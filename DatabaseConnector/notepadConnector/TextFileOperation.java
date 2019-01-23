@@ -11,10 +11,9 @@ public class TextFileOperation {
 
 	String FilePath="E:\\Selenium_Project\\database\\testingFile.txt";
 	
-	@Test()
+	
 	public void readtxt() 
 	{
-//		String file = new FileInputStream(FilePath);
 		BufferedReader read;
 		try {
 			read = new BufferedReader(new java.io.FileReader(FilePath));
